@@ -72,4 +72,22 @@ public class MainActivity extends AppCompatActivity {
         TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
         priceTextView.setText(NumberFormat.getCurrencyInstance().format(number));
     }
+
+    /**
+     * This method called when the plus button is clicked
+     * @param view
+     */
+    public void increment(View view) {
+        int quantity = 3;
+        display(quantity);
+    }
+
+    /**
+      * This method called when the minus button is clicked
+     * @param view
+     */
+    public void decrement (View view) {
+        int quantity = 2;
+        display(quantity);
+    }
 }
