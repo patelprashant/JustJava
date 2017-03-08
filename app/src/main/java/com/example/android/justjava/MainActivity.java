@@ -57,8 +57,10 @@ public class MainActivity extends AppCompatActivity {
      * @param view
      */
     public void submitOrder(View view) {
-        display(1);
-        displayPrice(2 * 5);
+        int quantity = 2;
+
+        display(quantity);
+        displayPrice(quantity * 5);
     }
 
     private void display(int number) {
