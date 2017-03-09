@@ -12,7 +12,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-    int quantity = 2;
+    int quantity = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +59,6 @@ public class MainActivity extends AppCompatActivity {
      * @param view
      */
     public void submitOrder(View view) {
-        display(quantity);
         displayPrice(quantity * 5);
     }
 
@@ -79,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
      * @param view
      */
     public void increment(View view) {
-        quantity = quantity + 1;
+        quantity++;
         display(quantity);
     }
 
@@ -89,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
      * @param view
      */
     public void decrement(View view) {
-        quantity = quantity - 1;
+        quantity--;
         display(quantity);
     }
 }
