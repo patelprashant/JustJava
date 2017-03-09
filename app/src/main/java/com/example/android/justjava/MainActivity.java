@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
+    int quantity = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,11 +55,10 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * This method is called when the order button is clicked
+     *
      * @param view
      */
     public void submitOrder(View view) {
-        int quantity = 2;
-
         display(quantity);
         displayPrice(quantity * 5);
     }
@@ -68,26 +68,28 @@ public class MainActivity extends AppCompatActivity {
         quntityTextView.setText("" + number);
     }
 
-    private void displayPrice (int number) {
+    private void displayPrice(int number) {
         TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
         priceTextView.setText(NumberFormat.getCurrencyInstance().format(number));
     }
 
     /**
      * This method called when the plus button is clicked
+     *
      * @param view
      */
     public void increment(View view) {
-        int quantity = 3;
+        quantity = quantity + 1;
         display(quantity);
     }
 
     /**
-      * This method called when the minus button is clicked
+     * This method called when the minus button is clicked
+     *
      * @param view
      */
-    public void decrement (View view) {
-        int quantity = 2;
+    public void decrement(View view) {
+        quantity = quantity - 1;
         display(quantity);
     }
 }
