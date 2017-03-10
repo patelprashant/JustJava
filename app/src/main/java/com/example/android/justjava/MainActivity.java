@@ -11,6 +11,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import static android.icu.lang.UCharacter.GraphemeClusterBreak.V;
+
 public class MainActivity extends AppCompatActivity {
     int quantity = 0;
 
@@ -59,7 +61,17 @@ public class MainActivity extends AppCompatActivity {
      * @param view
      */
     public void submitOrder(View view) {
-        displayPrice(quantity * 5);
+        int totalPrice = quantity * 5;
+        String priceMessage =  "Total: $" + totalPrice;
+        priceMessage = priceMessage + "\nThank You!";
+
+        displayMessage(priceMessage);
+//        displayPrice(quantity * 5);
+    }
+
+    private void displayMessage(String message) {
+        TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
+        priceTextView.setText(message);
     }
 
     private void display(int number) {
