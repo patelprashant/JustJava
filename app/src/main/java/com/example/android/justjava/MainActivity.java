@@ -67,8 +67,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void displayMessage(String message) {
-        TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
-        priceTextView.setText(message);
+        TextView orderSummaryTextview = (TextView) findViewById(R.id.order_summary_text_view);
+        orderSummaryTextview.setText(message);
     }
 
     private void displayQuantity(int number) {
@@ -102,9 +102,9 @@ public class MainActivity extends AppCompatActivity {
 
     private String createOrderSummary(int totalPrice) {
         String priceMessage = "Name: Prashant Patel ";
-        priceMessage += priceMessage + "\nQuantity: " + quantity;
-        priceMessage += priceMessage + "\nTotal: $" + totalPrice;
-        priceMessage += priceMessage + "\nThank You!";
+        priceMessage += "\nQuantity: " + quantity;
+        priceMessage += "\nTotal: $" + totalPrice;
+        priceMessage += "\nThank You!";
 
         return priceMessage;
     }
