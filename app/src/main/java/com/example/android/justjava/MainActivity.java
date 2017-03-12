@@ -57,15 +57,13 @@ public class MainActivity extends AppCompatActivity {
     /**
      * This method is called when the order button is clicked
      *
-     * @param view
+     * @param view view to pass
      */
     public void submitOrder(View view) {
         int totalPrice = calculatePrice(quantity);
-        String priceMessage = "Total: $" + totalPrice;
-        priceMessage = priceMessage + "\nThank You!";
+        String priceMessage = createOrderSummary(totalPrice);
 
         displayMessage(priceMessage);
-//        displayPrice(quantity * 5);
     }
 
     private void displayMessage(String message) {
@@ -74,13 +72,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void displayQuantity(int number) {
-        TextView quntityTextView = (TextView) findViewById(R.id.quantity_text_view);
-        quntityTextView.setText("" + number);
-    }
-
-    private void displayPrice(int number) {
-        TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
-        priceTextView.setText(NumberFormat.getCurrencyInstance().format(number));
+        TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
+        quantityTextView.setText("" + number);
     }
 
     /**
@@ -104,7 +97,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private int calculatePrice(int quantity) {
-        int totalPrice = quantity * unitPrice;
-        return totalPrice;
+        return quantity * unitPrice;
+    }
+
+    private String createOrderSummary(int totalPrice) {
+        String priceMessage = "Name: Prashant Patel ";
+        priceMessage += priceMessage + "\nQuantity: " + quantity;
+        priceMessage += priceMessage + "\nTotal: $" + totalPrice;
+        priceMessage += priceMessage + "\nThank You!";
+
+        return priceMessage;
     }
 }
