@@ -1,6 +1,7 @@
 package com.example.android.justjava;
 
 import android.icu.text.NumberFormat;
+import android.icu.text.StringPrepParseException;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -11,7 +12,10 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
+
+import javax.security.auth.callback.CallbackHandler;
 
 public class MainActivity extends AppCompatActivity {
     int quantity = 0;
@@ -65,10 +69,19 @@ public class MainActivity extends AppCompatActivity {
         CheckBox whippedCreamCB = (CheckBox) findViewById(R.id.whipped_cream_cb);
         Boolean hasWhippedCream = whippedCreamCB.isChecked();
 
+        CheckBox chocolateCB = (CheckBox) findViewById(R.id.chocolate_cb);
+        Boolean hasChocolate = chocolateCB.isChecked();
+
+        EditText nameField = (EditText) findViewById(R.id.name_field);
+        String customerName = nameField.getText().toString();
+
+
         Log.v("MainActivity", "Has whipped cream: " + hasWhippedCream);
+        Log.v("MainActivity", "Has whipped cream: " + hasChocolate);
+        Log.v("MainActivity", "Customer name: " + customerName);
 
         int totalPrice = calculatePrice(quantity);
-        String priceMessage = createOrderSummary(totalPrice, hasWhippedCream);
+        String priceMessage = createOrderSummary(totalPrice, customerName, hasWhippedCream, hasChocolate);
 
         displayMessage(priceMessage);
     }
@@ -107,9 +120,10 @@ public class MainActivity extends AppCompatActivity {
         return quantity * unitPrice;
     }
 
-    private String createOrderSummary(int totalPrice, boolean addWhippedCreame) {
-        String priceMessage = "Name: Prashant Patel ";
+    private String createOrderSummary(int totalPrice, String name, boolean addWhippedCreame, boolean addChocolate) {
+        String priceMessage = "Name: " + name;
         priceMessage += "\nAdd whipped creame? " + addWhippedCreame;
+        priceMessage += "\nAdd Chocolate? " + addChocolate;
         priceMessage += "\nQuantity: " + quantity;
         priceMessage += "\nTotal: $" + totalPrice;
         priceMessage += "\nThank You!";
