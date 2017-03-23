@@ -6,14 +6,16 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
     int quantity = 0;
-    int unitPrice = 5;
+    int unitPrice = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,8 +62,13 @@ public class MainActivity extends AppCompatActivity {
      * @param view view to pass
      */
     public void submitOrder(View view) {
+        CheckBox whippedCreamCB = (CheckBox) findViewById(R.id.whipped_cream_cb);
+        Boolean hasWhippedCream = whippedCreamCB.isChecked();
+
+        Log.v("MainActivity", "Has whipped cream: " + hasWhippedCream);
+
         int totalPrice = calculatePrice(quantity);
-        String priceMessage = createOrderSummary(totalPrice);
+        String priceMessage = createOrderSummary(totalPrice, hasWhippedCream);
 
         displayMessage(priceMessage);
     }
@@ -100,8 +107,9 @@ public class MainActivity extends AppCompatActivity {
         return quantity * unitPrice;
     }
 
-    private String createOrderSummary(int totalPrice) {
+    private String createOrderSummary(int totalPrice, boolean addWhippedCreame) {
         String priceMessage = "Name: Prashant Patel ";
+        priceMessage += "\nAdd whipped creame? " + addWhippedCreame;
         priceMessage += "\nQuantity: " + quantity;
         priceMessage += "\nTotal: $" + totalPrice;
         priceMessage += "\nThank You!";
