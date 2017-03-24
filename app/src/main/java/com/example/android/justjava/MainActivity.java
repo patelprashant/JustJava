@@ -19,7 +19,7 @@ import javax.security.auth.callback.CallbackHandler;
 
 public class MainActivity extends AppCompatActivity {
     int quantity = 0;
-    int unitPrice = 3;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
         Log.v("MainActivity", "Has whipped cream: " + hasChocolate);
         Log.v("MainActivity", "Customer name: " + customerName);
 
-        int totalPrice = calculatePrice(quantity);
+        int totalPrice = calculatePrice(quantity, hasWhippedCream, hasChocolate);
         String priceMessage = createOrderSummary(totalPrice, customerName, hasWhippedCream, hasChocolate);
 
         displayMessage(priceMessage);
@@ -116,14 +116,33 @@ public class MainActivity extends AppCompatActivity {
         displayQuantity(quantity);
     }
 
-    private int calculatePrice(int quantity) {
+    /**
+     * @param quantity
+     * @param addWhippedCreame
+     * @param addChocolate
+     * @return
+     */
+    private int calculatePrice(int quantity, boolean addWhippedCreame, boolean addChocolate) {
+        // Unit price of coffee
+        int unitPrice = 5;
+        // Add price of whipped cream
+        if (addWhippedCreame) {
+            unitPrice = unitPrice + 1;
+        }
+
+        // Add price of chocolate
+        if (addChocolate) {
+            unitPrice = unitPrice + 2;
+        }
+
+        // return total calculated price
         return quantity * unitPrice;
     }
 
     private String createOrderSummary(int totalPrice, String name, boolean addWhippedCreame, boolean addChocolate) {
         String priceMessage = "Name: " + name;
-        priceMessage += "\nAdd whipped creame? " + addWhippedCreame;
-        priceMessage += "\nAdd Chocolate? " + addChocolate;
+//        priceMessage += "\nAdd whipped creame? " + addWhippedCreame;
+//        priceMessage += "\nAdd Chocolate? " + addChocolate;
         priceMessage += "\nQuantity: " + quantity;
         priceMessage += "\nTotal: $" + totalPrice;
         priceMessage += "\nThank You!";
